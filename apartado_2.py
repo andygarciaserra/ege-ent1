@@ -23,7 +23,7 @@ for i in range(N1):
 
 delta_x = np.array(sorted(delta_x))
 
-y, x, z = plt.hist(delta_x, bins = 30, density = True, color = 'grey', alpha = 0.5, label = r'$\delta(x)$')
+y, x, z = plt.hist(delta_x, bins = 30, density = True, color = 'grey', edgecolor='grey',alpha = 0.5, label = r'$\delta(x)$')
 # Altura histograma, ambos lados de las barras
 
 bincenters = 0.5*(x[1:]+x[:-1])
@@ -51,10 +51,15 @@ nonzero = np.where(density != 0)
 error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
-plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,fmt='.',ms=8,label = 'Errores',alpha=0.8)
-plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = r'$P \ (\delta(x))$')
+plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,fmt='.',ms=8,label = 'Errores',alpha=0.6)
+plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = 'P '+ r'$(|\delta_{k}|)$')
 plt.xlabel(r'$\delta(x)$', fontsize = 16)
-plt.ylabel(r'$P \ (\delta(x))$', fontsize = 16)
+plt.ylabel('P '+r'$(\delta(x))$', fontsize = 16)
+plt.legend(fontsize=13)
+plt.xticks(fontsize=13)
+plt.yticks(fontsize=13)
+plt.tight_layout()
 plt.legend(loc='upper left')
+plt.savefig('ap2_hist.png',dpi=300)
 plt.show()
 
