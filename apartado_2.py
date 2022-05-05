@@ -51,7 +51,8 @@ nonzero = np.where(density != 0)
 error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
-plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,fmt='.',ms=8,label = 'Errores',alpha=0.6)
+plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,capsize=2,fmt='.',ms=8,label = 'Errores',alpha=0.6)
+
 plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = 'P '+ r'$(|\delta_{k}|)$')
 plt.xlabel(r'$\delta(x)$', fontsize = 16)
 plt.ylabel('P '+r'$(\delta(x))$', fontsize = 16)

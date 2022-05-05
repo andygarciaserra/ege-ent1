@@ -1,13 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 plt.close('all')
 
 N = int(1e5)
 omega_i = np.random.uniform(0, 1, N)
 
-P = 1
+P = 10
 k = 2*np.pi/100
 delta_i = np.array(sorted(np.sqrt(- P*np.log(omega_i))))
 
@@ -33,11 +32,11 @@ nonzero = np.where(density != 0)
 error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
-plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,fmt='.',ms=8,label = 'Errorbar',alpha=0.6)
+plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,capsize=2,fmt='.',ms=8,label = 'Errorbar',alpha=0.6)
 plt.plot(delta_i, Ray, 'k--',linewidth=2,label ='P '+ r'$(|\delta_{k}|)$')
 plt.xlabel(r'$|\delta_{k}|$', fontsize = 16)
 plt.ylabel('P '+r'$(|\delta_{k}|)$', fontsize = 16)
-plt.xlim((0,2.7))
+#plt.xlim((0,2.7))
 plt.legend(fontsize=13)
 plt.xticks(fontsize=13)
 plt.yticks(fontsize=13)
