@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 14 13:12:26 2021
-
-@author: adrian
-"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,7 +9,7 @@ N2 = int(2)    # Modos
 points = 1     # Puntos
 
 
-P = 1
+P = 10
 L = 100
 
 delta_x = np.zeros(N1)
@@ -36,7 +29,7 @@ for i in range(N1):
 
 delta_x = np.array(sorted(delta_x))
 
-y, x, z = plt.hist(delta_x, bins = 30, density = True, color = 'b', alpha = 0.5, label = r'$\delta(x)$')
+y, x, z = plt.hist(delta_x, bins = 30, density = True, color = 'grey', edgecolor='grey',alpha = 0.5, label = r'$\delta(x)$')
 # Altura histograma, ambos lados de las barras
 
 bincenters = 0.5*(x[1:]+x[:-1])
@@ -59,15 +52,17 @@ nonzero = np.where(density != 0)
 error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
-plt.errorbar(bincenters, y, color = 'r', ls = '', yerr = error, label = 'Errores')
-plt.plot(delta_x, Gauss, 'g', label = 'Distribución Gaussiana')
-plt.grid()
+plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,capsize=2,fmt='.',ms=8,label = 'Errores',alpha=0.6)
+plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = 'Gauss')
 plt.xlabel(r'$\delta(x)$', fontsize = 16)
-plt.ylabel(r'$\mathcal{P}(\delta(x))$', fontsize = 16)
-plt.title(r'Punto fijo $x$', fontsize = 24)
-plt.legend(loc = 'best', prop={'size':20})
-
-
+plt.ylabel('P '+r'$(\delta(x))$', fontsize = 16)
+plt.legend(fontsize=13)
+plt.xticks(fontsize=13)
+plt.yticks(fontsize=13)
+plt.tight_layout()
+plt.legend(loc='upper left')
+plt.savefig('ap3_hist.png',dpi=300)
+plt.show()
 
 ################################# 1000 puntos #################################
 
@@ -86,7 +81,7 @@ for i in range(N1):
 delta_x = np.array(sorted(delta_x))
 
 plt.figure()
-y, x, z = plt.hist(delta_x, bins = 30, density = True, color = 'b', alpha = 0.5, label = r'$\delta(x)$')
+y, x, z = plt.hist(delta_x, bins = 30, density = True, color = 'grey', edgecolor='grey',alpha = 0.5, label = r'$\delta(x)$')
 # Altura histograma, ambos lados de las barras
 
 bincenters = 0.5*(x[1:]+x[:-1])
@@ -109,10 +104,14 @@ nonzero = np.where(density != 0)
 error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
-plt.errorbar(bincenters, y, color = 'r', ls = '', yerr = error, label = 'Errores')
-plt.plot(delta_x, Gauss, 'g', label = 'Distribución Gaussiana')
-plt.grid()
+plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,capsize=2,fmt='.',ms=8,label = 'Errores',alpha=0.6)
+plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = 'Gauss')
 plt.xlabel(r'$\delta(x)$', fontsize = 16)
-plt.ylabel(r'$\mathcal{P}(\delta(x))$', fontsize = 16)
-plt.title(r'$10^{3}$ puntos $x_{i}$', fontsize = 24)
-plt.legend(loc = 'best', prop={'size':20})
+plt.ylabel('P '+r'$(\delta(x))$', fontsize = 16)
+plt.legend(fontsize=13)
+plt.xticks(fontsize=13)
+plt.yticks(fontsize=13)
+plt.tight_layout()
+plt.legend(loc='upper left')
+plt.savefig('ap3_hist_2.png',dpi=300)
+plt.show()

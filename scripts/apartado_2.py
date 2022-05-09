@@ -44,19 +44,21 @@ mean_x = np.mean(delta_x)
 
 Gauss = Gaussian(delta_x, mean_x, sigma_x)  
 
-mean_x2 = np.mean(delta_x**2)
-analytic_mean = 2*(1/L)*np.sum(np.absolute(delta_k)**2)
+print('sigma= '+str(sigma_x))
+
+print('mean_x2= '+str(np.mean(delta_x**2)))
+print('analytic_mean = '+str(2*(1/L)*np.sum(np.absolute(delta_k)**2)))
+
 
 nonzero = np.where(density != 0)
 error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
 plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,capsize=2,fmt='.',ms=8,label = 'Errores',alpha=0.6)
-
-plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = 'P '+ r'$(|\delta_{k}|)$')
+plt.plot(delta_x, Gauss, 'k--',linewidth=2, label = 'Rayleigh')
 plt.xlabel(r'$\delta(x)$', fontsize = 16)
 plt.ylabel('P '+r'$(\delta(x))$', fontsize = 16)
-plt.legend(fontsize=13)
+plt.legend(fontsize=15)
 plt.xticks(fontsize=13)
 plt.yticks(fontsize=13)
 plt.tight_layout()

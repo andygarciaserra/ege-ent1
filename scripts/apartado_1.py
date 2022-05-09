@@ -33,7 +33,7 @@ error = np.zeros(len(y))
 error[nonzero] = y[nonzero]/np.sqrt(density[nonzero])
 
 plt.errorbar(bincenters, y, color = 'm', ls = '', yerr = error,capsize=2,fmt='.',ms=8,label = 'Errorbar',alpha=0.6)
-plt.plot(delta_i, Ray, 'k--',linewidth=2,label ='P '+ r'$(|\delta_{k}|)$')
+plt.plot(delta_i, Ray, 'k--',linewidth=2,label ='Rayleigh')
 plt.xlabel(r'$|\delta_{k}|$', fontsize = 16)
 plt.ylabel('P '+r'$(|\delta_{k}|)$', fontsize = 16)
 #plt.xlim((0,2.7))
